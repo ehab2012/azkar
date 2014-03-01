@@ -3,7 +3,7 @@ By ehab aboudaya
 
 An Islamic azkar pop from quran, hadeeth and other text files.
 
-Usage:
+Usage
 ./notify.py
 
 will show a line from the files under textfiles directory and stores position.
@@ -14,15 +14,15 @@ will show a line from the files under textfiles directory and does NOT stores po
 The line number position is stored a settings file and will increment by one each time it is run or start from beginning.
 
 
-install:
+install
 just place all files under some directory and run as above.
 
-dependencies:
+dependencies
 sudo apt-get install xsel
 sudo apt-get install notify-osd
 
 
-other info:
+other info
 
 I use this script in cron as :
 
