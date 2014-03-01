@@ -25,4 +25,8 @@ other info -  I use this script in cron as
 
 */10 * * * * export DISPLAY=:0 && path/prayer/notify.py > /tmp/py_error.txt 2>&1
 
-may allah reward my good intentions
+notes
+may allah reward my good intentions.
+azkar text file was copied from  [ Sesame Soft ] Alnaseeha, Islamic reminder (Azkar)
+http://download.exdat.com/alnaseeha_islamic_reminder_azkar/index-14478.html
+
