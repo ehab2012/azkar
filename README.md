@@ -21,13 +21,8 @@ dependencies
 sudo apt-get install xsel
 sudo apt-get install notify-osd
 
-
-other info
-
-I use this script in cron as :
+other info -  I use this script in cron as
 
 */10 * * * * export DISPLAY=:0 && path/prayer/notify.py > /tmp/py_error.txt 2>&1
 
-
-# Change Log:
-# 0.1 inital version
+may allah reward my good intentions

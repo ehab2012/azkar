@@ -29,6 +29,9 @@
 
 #   Respect to pyperclip.py license file
 
+# Change Log:
+# 0.1 inital version
+
 import os
 import sys
 import glob
