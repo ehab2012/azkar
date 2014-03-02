@@ -32,6 +32,10 @@
 # Change Log:
 # 0.1 inital version
 
+# ToDo:
+# check if notify osd installs and config is ok
+# when calling show only it will not show last "only next" look at line 136
+
 import os
 import sys
 import glob
@@ -114,6 +118,7 @@ else:
 condition=True;
 beforesep="";
 aftersep="";
+line="";
 
 while condition:
     textfilepos=find_element_in_list(Currentfile,files); # check if Currentfile exists
@@ -128,37 +133,44 @@ while condition:
     if os.path.getsize(Currentfile) == 0:
                         print "file :" + Currentfile + "\n size is 0 so exiting!"
                         sys.exit(1)
-
-    line=linecache.getline(Currentfile, position).strip('\n');
-    if len(line):
-                    condition=False;
-                    try:
-                        material=line.split("|");
-                        beforesep=material[0]
-                        aftersep=material[1]
-                    except:
-                        beforesep=os.path.basename(Currentfile);
-                        aftersep=line
-                    # adavnce forward
-                    position=position+1
-                    updatesettings(True)
-    else:
-            # update current file position
-            position=1  # line does not exists go back to line 1
-            updatesettings(True)
-
-    linecache.clearcache();
+    err=False;
+    try:
+	line=config.get("General", "lastmsg");
+	condition=False;
+    except ConfigParser.Error as e:
+	err=True
+    if (changepos) or (err) or (len(line)==0):
+		line=linecache.getline(Currentfile, position).strip('\n');
+		if len(line):
+			    condition=False;
+			    # adavnce forward
+			    position=position+1
+			    config.set("General", "lastmsg", line)
+			    updatesettings(True)
+		else:
+		    # update current file position
+		    position=1  # line does not exists go back to line 1
+		    config.set("General", "lastmsg", line)	    
+		    updatesettings(True)
+		linecache.clearcache();
 #end of loop
 
-#print beforesep
-#print aftersep
+try:
+	material=line.split("|");
+	beforesep=material[0]
+	aftersep=material[1]
+except:
+	beforesep=os.path.basename(Currentfile);
+	aftersep=line
+	
+# its time to show the popup	
 sendmessage(beforesep ,aftersep);
 
-textfilepos=textfilepos+1
-if textfilepos >=len(files):
-                            textfilepos=0
-Currentfile= files[textfilepos];
 if changepos :
+	textfilepos=textfilepos+1
+	if textfilepos >=len(files):
+				    textfilepos=0
+	Currentfile= files[textfilepos];
 	updatesettings(False)
 else:
 	pyperclip.setcb(aftersep)
