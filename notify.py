@@ -34,7 +34,9 @@
 
 # ToDo:
 # check if notify osd installs and config is ok
-# when calling show only it will not show last "only next" look at line 136
+# FIX PATH IN SETTINGS INI 
+#    prayer/textfiles/prayer.txt = 27  bug
+#    h2/....  ok ... this has to do with rel and abs path
 
 import os
 import sys
