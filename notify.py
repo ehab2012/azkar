@@ -162,7 +162,7 @@ try:
 	beforesep=material[0]
 	aftersep=material[1]
 except:
-	beforesep=os.path.basename(Currentfile);
+	beforesep=os.path.basename(Currentfile) + " line:" + str(position);
 	aftersep=line
 	
 # its time to show the popup	
