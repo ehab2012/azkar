@@ -141,6 +141,21 @@ while condition:
 	condition=False;
     except ConfigParser.Error as e:
 	err=True
+	
+    if (changepos) or (err) or (len(line)==0):
+		line=linecache.getline(Currentfile, position).strip('\n');
+		if len(line):
+			    condition=False;
+			    # adavnce forward
+			    position=position+1
+		else:
+		    # update current file position
+		    position=1  # line does not exists go back to line 1
+		config.set("General", "lastmsg", os.path.basename(Currentfile) + "|" + line)
+	        updatesettings(True)
+		linecache.clearcache();
+	
+"""
     if (changepos) or (err) or (len(line)==0):
 		line=linecache.getline(Currentfile, position).strip('\n');
 		if len(line):
@@ -155,6 +170,7 @@ while condition:
 		    config.set("General", "lastmsg", line)	    
 		    updatesettings(True)
 		linecache.clearcache();
+"""		
 #end of loop
 
 try:
